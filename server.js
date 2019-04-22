@@ -7,7 +7,7 @@ var mongoose = require("mongoose");
 // ************** Imports End ********************
 
 
-// Server Port
+// Server Port - try Heroku first
 var PORT = process.env.PORT || 3000;
 
 
@@ -38,8 +38,9 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
-// Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/headlinesDB", { useNewUrlParser: true });
+// Connect to the Mongo DB - try Heroku first
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/headlinesDB";
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // ************** Configure Middleware End ********************
 
