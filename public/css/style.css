@@ -2,39 +2,40 @@
 html {
     position: relative;
     min-height: 100%;
-  }
+}
   
-  body {
+body {
     margin-bottom: 80px;
-  }
-  
-  .card a:not([href]):not([tabindex]).scrape-new {
+    background-image: url("../images/paper.png");
+}
+
+.card a:not([href]):not([tabindex]).scrape-new {
     color: #2196F3;
-  }
-  
-  .footer {
+}
+
+.footer {
     position: absolute;
     bottom: 0;
     width: 100%;
     height: 80px;
     color: white;
     background-color: #2196f3;
-  }
-  
-  .navbar {
+}
+
+.navbar {
     margin-bottom: 0;
-  }
-  
-  .jumbotron {
+}
+
+.jumbotron {
     position: relative;
     width: 100%;
     height: 500px;
     padding: 0;
     font-family: "Cormorant SC";
     box-shadow: 10px 5px 20px 2px lightslategrey;
-  }
-  
-  .jumbotron .overlay {
+}
+
+.jumbotron .overlay {
     position: absolute;
     top: 0;
     right: 0;
@@ -43,77 +44,77 @@ html {
     z-index: auto;
     background: linear-gradient(#333, black);
     opacity: 0.7;
-  }
+}
   
-  .jumbotron .background-image {
+.jumbotron .background-image {
     height: 100%;
     background-image: url("../images/background.jpg");
     background-size: cover;
-  }
-  
-  .jumbotron .caption {
+}
+
+.jumbotron .caption {
     position: absolute;
     top: 30%;
     width: 100%;
     text-align: center;
-  }
-  
-  .jumbotron .caption h1,
-  .jumbotron .caption p {
+}
+
+.jumbotron .caption h1,
+.jumbotron .caption p {
     color: white;
-  }
-  
-  .jumbotron h1 {
+}
+
+.jumbotron h1 {
     font-size: 80px;
     font-weight: 800;
-  }
-  
-  .jumbotron p {
+}
+
+.jumbotron p {
     font-size: 30px;
-  }
-  
-  .article-container {
+}
+
+.article-container {
     padding-bottom: 25px;
-  }
-  
-  .card {
+}
+
+.card {
     border-radius: 0;
     box-shadow: 3px 3px 20px lightslategrey;
     margin: 20px 0;
-  }
-  
-  .card .card-header {
+}
+
+.card .card-header {
     background-color: #2196f3;
     position: relative;
     padding-top: 30px;
     padding-bottom: 30px;
-  }
-  
-  .card .card-header h3 {
+}
+
+.card .card-header h3 {
     color: white;
-  }
-  
-  .card .card-header .btn {
+}
+
+.card .card-header .btn {
     position: absolute;
     top: 20px;
     right: 20px;
-  }
-  
-  .card .card-header .btn.notes {
+}
+
+.card .card-header .btn.notes {
     right: 200px;
-  }
-  
-  .card .card-body {
+}
+
+.card .card-body {
     font-size: 16px;
-  }
-  
-  .card .card-header .article-link {
+}
+
+.card .card-header .article-link {
     color: white;
     display: inline-block;
     width: 80%;
-  }
-  
-  .footer > .container > p {
+}
+
+.footer > .container > p {
     position: absolute;
     right: 0;
     bottom: 0;
@@ -125,67 +126,66 @@ html {
     font-weight: bold;
     background: #0d5590;
     color: #9e9e9e;
-  }
-  
-  .footer a:link {
-    color: #cccccc!important;
-  }
+}
 
-  .footer a:visited {
+.footer a:link {
     color: #cccccc!important;
-  }
+}
 
-  .footer a:hover {
+.footer a:visited {
+    color: #cccccc!important;
+}
+
+.footer a:hover {
     color:  #ffffff!important;
-  }
+}
 
-  .navbar-nav > li > a.nav-link,
-  .navbar-nav > li > a.scrape-new,
-  .navbar-nav > li > a.clearUnSaved,
-  .navbar-nav > li > a.clearSaved  {
+.navbar-nav > li > a.nav-link,
+.navbar-nav > li > a.scrape-new,
+.navbar-nav > li > a.clearUnSaved,
+.navbar-nav > li > a.clearSaved  {
     padding: 10px;
     margin-top: 10px;
     margin-left: 10px;
     color: white;
-  }
+}
 
-  .navbar-nav > li > a.scrape-new,
-  .navbar-nav > li > a.clearUnSaved,
-  .navbar-nav > li > a.clearSaved {
+.navbar-nav > li > a.scrape-new,
+.navbar-nav > li > a.clearUnSaved,
+.navbar-nav > li > a.clearSaved {
     font-weight: bold;
-  }
-  
-  .navbar-nav > li > a.scrape-new:hover,
-  .navbar-nav > li > a.clearUnSaved:hover,
-  .navbar-nav > li > a.clearSaved:hover {
+}
+
+.navbar-nav > li > a.scrape-new:hover,
+.navbar-nav > li > a.clearUnSaved:hover,
+.navbar-nav > li > a.clearSaved:hover {
     background: #4caf50;
-  }
-  
-  .navbar-nav > li > a.scrape-new:active {
+}
+
+.navbar-nav > li > a.scrape-new:active {
     background: #e51c23;
-  }
-  
-  .scrape-new {
+}
+
+.scrape-new {
     cursor: pointer;
-  }
-  
-  .m-top-80 {
+}
+
+.m-top-80 {
     margin-top: 80px;
-  }
-  
-  textarea {
+}
+
+textarea {
     padding: 10px;
     resize: none;
     width: 100%;
-  }
-  
-  .bootbox-body .btn {
+}
+
+.bootbox-body .btn {
     float: right;
     margin: 5px;
-  }
-  
-  .note.list-group-item .btn {
+}
+
+.note.list-group-item .btn {
     position: relative;
     bottom: 10px;
-  }
-  
+}
