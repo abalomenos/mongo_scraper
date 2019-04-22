@@ -1,42 +1,39 @@
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="/">Mongo Scraper</a>
-  <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false"
-    aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
-  <div class="collapse navbar-collapse" id="navbarColor01">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/">Home
-          <span class="sr-only">(current)</span>
-        </a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="/saved">Saved Articles
-          <span class="sr-only">(current)</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="btn btn-danger clearSaved">CLEAR SAVED ARTICLES!</a>
-      </li>
-    </ul>
-  </div>
+<!-- saved.html body -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="/">Mongo Scraper</a>
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/saved">Saved Articles
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-danger clearSaved">CLEAR SAVED ARTICLES!</a>
+            </li>
+        </ul>
+    </div>
 </nav>
-<div class="jumbotron text-center">
-  <div class="overlay">
-  </div>
-  <div class="background-image">
-  </div>
-  <div class="caption">
-    <h1>Saved Articles</h1>
-    <p>Your Saved Articles</p>
-  </div>
-  </div>
 
-  <div class="container-fluid article-container">
+<div class="jumbotron text-center">
+    <div class="overlay"></div>
+    <div class="background-image"></div>
+    <div class="caption">
+        <h1>Mongo Scraper | Washington Post Edition</h1>
+        <p>Saved Articles</p>
+    </div>
+</div>
+
+<div class="container-fluid article-container">
     {{#each articles}}
-    <div data-id="{{this._id}}" class="card">
+    <div class="card" data-id="{{this._id}}">
         <div class="card-header">
             <h3>
                 <a class="article-link" target="_blank" rel="noopener noreferrer" href="{{this.url}}">{{this.headline}}</a>

@@ -1,46 +1,53 @@
-var db = require("../models");
+
+// ************** Imports ********************
 var axios = require("axios");
 var cheerio = require("cheerio");
 
+// Require all models
+var db = require("../models");
+// ************** Imports End ********************
+
 module.exports = function(app) {
 
-// A GET route for scraping the website
-app.get("/api/fetch", function(req, res) {
-    // First, we grab the body of the html with axios
-    axios.get("https://www.washingtonpost.com/").then(function(response) {
-        // Then, we load that into cheerio and save it to $ for a shorthand selector
-        var $ = cheerio.load(response.data);
-        // Now, we grab every headline within an article tag, and do the following:
-        $(".headline").each(function() {
-            // Save an empty result object
-            var result = {};
-            // Add the text and href of every link, and save them as properties of the result object
-            result.headline = $(this)
-                .children("a")
-                .text()
-                .trim();
-            result.url = $(this)
-                .children("a")
-                .attr("href");
-            result.summary = $(this)
-                .siblings(".blurb");
-                if (result.summary == "") {
-                    result.summary = "No summary";
-                } else {
-                    result.summary = $(this)
+
+    // A GET route for scraping the website
+    app.get("/api/fetch", function(req, res) {
+        // First, we grab the body of the html with axios
+        axios.get("https://www.washingtonpost.com/").then(function(response) {
+            // Then, we load that into cheerio and save it to $ for a shorthand selector
+            var $ = cheerio.load(response.data);
+            // Now, we grab every headline within an article tag, and do the following:
+            $(".headline").each(function() {
+                // Save an empty result object
+                var result = {};
+                // Add the text and href of every link, and save them as properties of the result object
+                result.headline = $(this)
+                    .children("a")
                     .text()
                     .trim();
-                }
-            // Create a new Article using the `result` object built from scraping
-            db.Article.create(result)
-            .catch(function(err) {
-                // If an error occurred, log it
-                console.log(err);
+                result.url = $(this)
+                    .children("a")
+                    .attr("href");
+                result.summary = $(this)
+                    .siblings(".blurb");
+                    if (result.summary == "") {
+                        result.summary = "No summary";
+                    } else {
+                        result.summary = $(this)
+                        .text()
+                        .trim();
+                    }
+                // Create a new Article using the `result` object built from scraping
+                db.Article.create(result)
+                .catch(function(err) {
+                    // If an error occurred, log it
+                    console.log(err);
+                });
             });
+            res.send("Scrape Complete");
         });
-        res.send("Scrape Complete");
     });
-});
+
 
     // Get articles base on query
     app.get("/api/articles", function(req, res) {
@@ -66,16 +73,18 @@ app.get("/api/fetch", function(req, res) {
             });
     });
 
-        // Get Article base on ID
-        app.get("/api/article/:id", function(req, res) {
-                db.Article.findOne({ _id: req.params.id })
-                .then(function(dbArticle) {
-                    res.json(dbArticle);
-                })
-                .catch(function(err) {
-                    res.json(err);
-                });
-        });
+
+    // Get Article base on ID
+    app.get("/api/article/:id", function(req, res) {
+            db.Article.findOne({ _id: req.params.id })
+            .then(function(dbArticle) {
+                res.json(dbArticle);
+            })
+            .catch(function(err) {
+                res.json(err);
+            });
+    });
+
 
     // Delete all Non-Saved Articles from the DB
     app.delete("/api/articles-unsaved", function(req, res) {
@@ -87,6 +96,7 @@ app.get("/api/fetch", function(req, res) {
         });
     });
 
+
     // Delete all Saved Articles from the DB
     app.delete("/api/articles-saved", function(req, res) {
         db.Article.deleteMany({
@@ -96,6 +106,7 @@ app.get("/api/fetch", function(req, res) {
             res.json(err);
         });
     });
+
 
     // Update Note
     app.post("/api/note/:id", function(req, res){
@@ -107,6 +118,7 @@ app.get("/api/fetch", function(req, res) {
             res.json(dbEmployee);
         });
     })
+
 
     // Save Article and Create New Note for Article
     app.post("/api/article-save/:id", function(req, res) {

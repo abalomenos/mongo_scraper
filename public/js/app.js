@@ -1,10 +1,12 @@
 
 $(document).ready(function() {
 
-    // Variables
+    // ************** Variables ********************
     var articleContainer = $(".article-container");
+    // ************** Variables End ********************
 
-    // Event Listeners
+
+    // ************** Event Listeners ********************
     $(document).on("click", ".scrape-new", scrapeArticles);
     $(document).on("click", ".btn.notes", articleNote);
     $(document).on("click", ".btn.save", articleSave);
@@ -12,10 +14,25 @@ $(document).ready(function() {
     $(document).on("click", ".btn.saveNote", saveNote);
     $(document).on("click", ".btn.clearUnSaved", clearUnSavedArticles);
     $(document).on("click", ".btn.clearSaved", clearSavedArticles);
-    
+    // ************** Event Listeners End ********************
 
-    // Event Handlers
 
+    // ************** Event Handlers ********************
+
+
+    // Scrape Articles
+    function scrapeArticles() {
+        deleteNonSavedArticles();
+        $.ajax({
+            method: "GET",
+            url: "/api/fetch"
+        }).then(function() {
+            initialize();
+        });
+    }
+
+
+    // Initialize index.html after getting new Articles
     function initialize() {
 
         $.ajax({
@@ -29,19 +46,10 @@ $(document).ready(function() {
                 renderEmpty();
             }
         });
-      }
+    }   
 
-    function scrapeArticles() {
-        deleteNonSavedArticles();
-        $.ajax({
-            method: "GET",
-            url: "/api/fetch"
-        }).then(function() {
-            initialize();
-            // bootbox.alert($("<h3 class='text-center m-top-80'>").text(data.message));
-        });
-    }
 
+    // Render new Articles to the article-container div
     function renderNewArticles(articles) {
         var articleCards = [];
         for (var i = 0; i < articles.length; i++) {
@@ -50,11 +58,11 @@ $(document).ready(function() {
         articleContainer.append(articleCards);
     }
 
-    function newArticleCard(article) {
 
+    // Render each Article to a new Card div before passing to the article-container div
+    function newArticleCard(article) {
         var card = $("<div class='card'>");
         card.attr("data-id", article._id);
-
         var cardHeader = $("<div class='card-header'>").append(
             $("<h3>").append(
                 $("<a class='article-link' target='_blank' rel='noopener noreferrer'>")
@@ -64,16 +72,14 @@ $(document).ready(function() {
                 .attr("data-id", article._id)
             )
         );
-  
         var cardBody = $("<div class='card-body'>").append(
-            $("<p>")
-                .text(article.summary)
+            $("<p>").text(article.summary)
         );
-  
         card.append(cardHeader, cardBody);
         return card;
     }
     
+
     // Delete All Non-Saved Articles
     function deleteNonSavedArticles() {
         $.ajax({
@@ -81,6 +87,7 @@ $(document).ready(function() {
             url: "/api/articles-unsaved"
         });
     }
+
 
     // Delete All Saved Articles
     function deleteSavedArticles() {
@@ -90,11 +97,13 @@ $(document).ready(function() {
         });
     }
 
+
     // Clear Un-Saved Articles
     function clearUnSavedArticles() {
         deleteNonSavedArticles();
         window.location.reload();
     }
+
 
     // Clear Saved Articles
     function clearSavedArticles() {
@@ -105,13 +114,11 @@ $(document).ready(function() {
 
     // Get Note for current Saved Article
     function articleNote() {
-
         var currentArticle = $(this)
             .siblings(".article-link")
             .text()
             .trim();
         var currentArticleID = $(this).attr("data-id");
-        
         // Get data from current Article
         $.ajax({
             method: "GET",
@@ -133,8 +140,7 @@ $(document).ready(function() {
                     $("<button class='btn btn-success saveNote'>Save Note</button>")
                     .attr("data-id", currentArticleID)
                 );
-        
-                // Adding the formatted HTML to the note modal
+                // Adding the formatted HTML to the Note Modal
                 bootbox.dialog({
                     message: modalText,
                     closeButton: true
@@ -143,6 +149,7 @@ $(document).ready(function() {
             });
         });
     }
+
 
     // Update Note for Current Article
     function saveNote() {
@@ -166,13 +173,12 @@ $(document).ready(function() {
             })    
         });
         bootbox.hideAll();  
-      }
+    }
 
 
     // Un-Save Article
     function articleUnSave() {
         var currentArticleID = $(this).attr("data-id");
-        console.log(currentArticleID);
         // Run a POST request to Un-Save the Article
         $.ajax({
             method: "POST",
@@ -182,10 +188,10 @@ $(document).ready(function() {
         $(this).parent().parent().parent().remove();
     }
 
+
     // Save Article
     function articleSave() {
         var currentArticleID = $(this).attr("data-id");
-
         // Run a POST request to Save the Article
         $.ajax({
             method: "POST",
@@ -194,6 +200,9 @@ $(document).ready(function() {
             // Delete from the DOM
             $(this).parent().parent().parent().remove();
         };
-      
+    
+        
+    // ************** Event Handlers ********************
+
 
 });

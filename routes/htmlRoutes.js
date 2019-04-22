@@ -1,4 +1,8 @@
+
+// ************** Imports ********************
+// Require all models
 var db = require("../models");
+// ************** Imports End ********************
 
 module.exports = function(app) {
 

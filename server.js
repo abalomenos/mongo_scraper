@@ -1,17 +1,19 @@
 
+// ************** Imports ********************
 var express = require("express");
 var exphbs = require("express-handlebars");
 var logger = require("morgan");
 var mongoose = require("mongoose");
+// ************** Imports End ********************
 
 
-// Require all models
-var db = require("./models");
-
+// Server Port
 var PORT = process.env.PORT || 3000;
+
 
 // Initialize Express
 var app = express();
+
 
 // ************** Configure Middleware ********************
 
@@ -51,5 +53,6 @@ require("./routes/htmlRoutes")(app);
 app.listen(PORT, function() {
   console.log("App running on port " + PORT + "!");
 });
+
 
 module.exports = app;
